@@ -6,6 +6,7 @@ RUN apt update && \
 
 # Installing additional PHP modules
 RUN docker-php-ext-install pdo pdo_mysql gd zip intl xml
+# RUN docker-php-ext-install mysqli
 
 # Cleaning APT cache
 RUN apt clean
