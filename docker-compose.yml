@@ -1,0 +1,34 @@
+version: '3.8'
+name: 'poop'
+services:
+  apache:
+    build: './.docker/apache/'
+    depends_on:
+      - php
+    ports:
+      - "1111:80"
+    volumes:
+      - ./src/:/var/www/html/
+
+  php:
+    build: ./.docker/php
+    working_dir: /var/www/html
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    ports:
+      - 1112:3306
+    expose:
+      - 3306
+    volumes:
+      - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: phpoop
+      MYSQL_USER: username
+      MYSQL_PASSWORD: password
