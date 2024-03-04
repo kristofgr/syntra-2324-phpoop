@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // DATABASE INFO
 // ----------------------------
 define("DB_HOST", "com-linweb575.srv.combell-ops.net");
